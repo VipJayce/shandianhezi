@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="webjars/jqgrid/4.7.0/js/jquery.jqGrid.js"></script>
+<script src="webjars/jqgrid/4.7.0/js/i18n/grid.locale-cn.js"></script>
+<script src="webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="local/faui/fautils.js"></script>
+<script src="local/faui/layer/layer.js"></script>
+
+<link rel="stylesheet" href="webjars/jqgrid/4.7.0/css/ui.jqgrid.css" />
+<link rel="stylesheet" href="webjars/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="webjars/bootstrap/4.0.0/css/bootstrap.css" />
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/jquery-ui.css" />
+<link rel="stylesheet" href="local/faui/layer/skin/default/layer.css" />
+<link rel="stylesheet" href="local/faui/faui.css" />
+<link rel="stylesheet" href="assets/css/font-awesome.css" />
+<!-- page specific plugin styles -->
+<link rel="stylesheet" href="assets/css/bootstrap-datepicker3.css" />
+<!-- text fonts -->
+<link rel="stylesheet" href="assets/css/ace-fonts.css" />
+<!-- ace styles -->
+<link rel="stylesheet" href="assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<meta charset="UTF-8">
+<title>首页</title>
+</head>
+<body>
+	<div class="container">
+		<h3 class="header smaller lighter green"></h3>
+		<div>
+			<button class="btn btn-info" id = "startBtn" data-loading-text="Loading..." autocomplete="off">
+				一键投放
+				<i class="ace-icon fa fa-play  align-top bigger-125 icon-on-right"></i>
+			</button>
+			<button class="btn btn-info" id = "pauseBtn">
+				一键暂停
+				<i class="ace-icon fa fa-pause  align-top bigger-125 icon-on-right"></i>
+			</button>
+			<button class="btn btn-info" id = "freshBtn">
+				用户刷新
+				<i class="ace-icon fa fa-retweet align-top bigger-125 icon-on-right"></i>
+			</button>
+			<button class="btn btn-info" id = "uploadBtn">
+				用户上传
+				<i class="ace-icon fa fa-folder-open-o align-top bigger-125 icon-on-right"></i>
+			</button>
+		</div>
+		<h3 class="header smaller lighter green">用户状态</h3>
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="grid-table"></table>
+				<div id="grid-pager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var colNames = [ 'id','账户名', '每日消耗', '余额' ,'状态'];
+	var colModel = [ {
+		name : 'id',
+		index : 'id',
+		hidden : true
+	}, {
+		name : 'userName',
+		index : 'userName',
+		width : 265
+	}, {
+		name : 'totalCost',
+		index : 'totalCost',
+		width : 265,
+		align :'center'
+	}, {
+		name : 'reFee',
+		index : 'reFee',
+		width : 265,
+		align :'center'
+	}, {
+		name : 'status',
+		index : 'status',
+		width : 265
+	} ];
+	var grid_selector = "#grid-table";
+	var pager_selector = "#grid-pager";
+	var parent_column = $(grid_selector).closest('[class*="col-"]');
+	$(window).on('resize.jqGrid', function() {
+		$(grid_selector).jqGrid('setGridWidth', parent_column.width());
+	});
+	$(document).on(
+			'settings.ace.jqGrid',
+			function(ev, event_name, collapsed) {
+				if (event_name === 'sidebar_collapsed'
+						|| event_name === 'main_container_fixed') {
+					setTimeout(function() {
+						$(grid_selector).jqGrid('setGridWidth',
+								parent_column.width());
+					}, 20);
+				}
+			});
+	$(grid_selector).jqGrid({
+		url : '/shandianhezi/queryUserMsg',
+		datatype : "json",
+		mtype : 'POST',
+		postData : {page:1},
+		jsonReader : {
+			root : "result",
+			total : 'totalPage',
+			page : 'page',
+			records : 'records'
+		},
+		height : '321px',
+		colNames : colNames,
+		colModel : colModel,
+		shrinkToFit : false,
+		rownumbers : true,
+		rowNum :50,
+		multiselect : true,
+		sortable : true,
+		viewrecords : true,
+		pager : pager_selector,
+		altRows : true,
+		multiboxonly : true,
+		isShowNoDataTips : true,
+		isCachePostData : true,
+		isSelectTop : true
+	});
+	$(window).triggerHandler('resize.jqGrid');
+
+	function changeStatus(msg,status,btn){
+		var selectIds = $(grid_selector).jqGrid("getGridParam", "selarrrow");
+		if(selectIds.length == 0){
+			FA.utils.confirm( msg , function(){
+				submitChange(btn,{"status":status});
+			});
+		}else{
+			var userIds = "";
+			for(var i = 0 ; i < selectIds.length ; i++){
+				userIds += selectIds[i];
+				if(i < (selectIds.length - 1)){
+					userIds += ",";
+				}
+			}
+			submitChange(btn,{"status":status,"userIds":userIds});
+		}
+	}
+	
+	function submitChange(btn,postData){
+		FA.utils.showloading();
+		btn.fabutton('loading');
+		$.ajax({
+			url : "/shandianhezi/setStatus",
+			type: "post",
+			data: postData,
+			success : function(data) {
+				btn.fabutton('reset');
+				FA.utils.hideloading();
+				FA.utils.msg(data.msg);
+				if(data.status == "true"){
+					gridRefresh();
+				}
+			},
+			error:function(data){
+				btn.fabutton('reset');
+				FA.utils.hideloading();
+			}
+		});
+	}
+	
+	$("#startBtn").click(function(){
+		changeStatus("是否需要投放所有用户?","tfz",$("#startBtn"));
+	});
+	
+	$("#pauseBtn").click(function(){
+		changeStatus("是否需要暂停所有用户?","zt",$("#pauseBtn"));
+	});
+	
+	$("#freshBtn").click(function(){
+		gridRefresh();
+// 		$("#freshBtn").fabutton('loading');
+// 		$.ajax({
+// 			url : "/shandianhezi/freshUser",
+// 			type: "post",
+// 			success : function(data) {
+// 				gridRefresh();
+// 				$("#freshBtn").fabutton('reset');
+// 				FA.utils.msg(data);
+// 			},
+// 			error:function(data){
+// 				$("#freshBtn").fabutton('reset');
+// 			}
+// 		});
+	});
+	
+	$("#uploadBtn").click(function(){
+		FA.utils.layer({
+			'width' : '400px',
+			'height' : '200px',
+			'title' : '文件上传',
+			'content' : '' ,
+			'id' : 'uploadLayer',
+			'scrollbar' : false
+		});
+		FA.utils.layer.loadcontent('uploadLayer',{
+            'url' : "/shandianhezi/turnToUpload",
+            'type' : 'get',
+            'dataType' : 'html'
+        });
+	});
+	
+	function gridRefresh(){
+		$(grid_selector).jqGrid('setGridParam',{ 
+            page:1 
+        }).trigger("reloadGrid");
+	}
+	
+	setInterval(gridRefresh,15*60*1000);
+	
+</script>
+</html>

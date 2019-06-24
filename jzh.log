@@ -1,0 +1,51 @@
+[INFO ] 2019-06-19 10:29:01,413 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2019-06-19 10:29:01,413 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2019-06-19 10:29:02,955 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-06-19 10:29:03,065 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 98ms. Found 1 repository interfaces.
+[INFO ] 2019-06-19 10:29:03,868 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8f3e0ad7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-06-19 10:29:05,135 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8011 (http)
+[INFO ] 2019-06-19 10:29:05,379 org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3965 ms
+[INFO ] 2019-06-19 10:29:08,296 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2019-06-19 10:29:08,384 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] 2019-06-19 10:29:10,231 org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[WARN ] 2019-06-19 10:29:10,310 org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2019-06-19 10:29:10,587 org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-06-19 10:29:10,716 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8011 (http) with context path '/shandianhezi'
+[INFO ] 2019-06-19 10:29:57,262 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2019-06-19 10:29:57,263 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2019-06-19 10:29:59,978 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-06-19 10:30:00,104 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 114ms. Found 1 repository interfaces.
+[INFO ] 2019-06-19 10:30:00,934 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c9903775] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-06-19 10:30:02,390 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8011 (http)
+[INFO ] 2019-06-19 10:30:02,643 org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5380 ms
+[INFO ] 2019-06-19 10:30:06,040 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2019-06-19 10:30:06,126 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] 2019-06-19 10:30:08,174 org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[WARN ] 2019-06-19 10:30:08,320 org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2019-06-19 10:30:08,595 org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-06-19 10:30:08,723 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8011 (http) with context path '/shandianhezi'
+[INFO ] 2019-06-19 11:20:33,639 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO ] 2019-06-19 11:20:33,639 org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO ] 2019-06-19 11:20:35,300 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-06-19 11:20:35,534 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 220ms. Found 1 repository interfaces.
+[INFO ] 2019-06-19 11:20:36,558 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3840a9da] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-06-19 11:20:37,687 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8011 (http)
+[INFO ] 2019-06-19 11:20:38,194 org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4554 ms
+[INFO ] 2019-06-19 11:20:42,004 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2019-06-19 11:20:42,144 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[INFO ] 2019-06-19 11:20:44,528 org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[WARN ] 2019-06-19 11:20:45,469 org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2019-06-19 11:20:45,718 org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-06-19 11:20:45,845 org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8011 (http) with context path '/shandianhezi'
+[INFO ] 2019-06-19 11:20:56,843 org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2019-06-19 11:20:56,859 org.springframework.web.servlet.DispatcherServlet - Completed initialization in 16 ms
+[INFO ] 2019-06-19 11:24:49,715 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO ] 2019-06-19 11:24:49,874 org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 140ms. Found 1 repository interfaces.
+[INFO ] 2019-06-19 11:24:50,923 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$204de302] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 2019-06-19 11:24:55,771 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2019-06-19 11:24:59,541 org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[WARN ] 2019-06-19 11:24:59,846 org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2019-06-19 11:25:00,858 org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[INFO ] 2019-06-19 11:25:02,279 org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[INFO ] 2019-06-19 11:25:02,281 org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2019-06-19 11:25:02,296 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

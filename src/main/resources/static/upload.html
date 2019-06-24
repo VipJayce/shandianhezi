@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<div class="container">
+	<div>
+		<form id = "fileForm" enctype="multipart/form-data">
+			文件：<input type="file" name="fileName" />  
+		</form>
+		<h1 class="header smaller lighter green"></h1>
+		<button class="btn-info" id = "submitBtn">上传</button>
+	</div>
+</div>
+
+<script>
+	$("#submitBtn").click(function(){
+		$("#submitBtn").fabutton('loading');
+		FA.utils.showloading();
+		$.ajax({
+		    url: "/shandianhezi/upload",
+		    type: "POST",
+		    data: new FormData($("#fileForm")[0]),
+		    processData: false,
+		    contentType: false,
+		    success : function(data) {
+		    	$("#submitBtn").fabutton('reset');
+		    	FA.utils.hideloading();
+		    	$(grid_selector).jqGrid('setGridParam',{ 
+		            page:1 
+		        }).trigger("reloadGrid");
+		    	FA.utils.layer.close("uploadLayer");
+		    },
+		    error : function(data) {
+		    	$("#submitBtn").fabutton('reset');
+		    	FA.utils.msg(data.msg);
+		    }
+		});
+	});
+</script>
