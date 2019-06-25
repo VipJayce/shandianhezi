@@ -12,6 +12,7 @@ import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jayce.comm.util.EmptyUtil;
 import com.jayce.comm.util.FileUtil;
@@ -37,38 +38,20 @@ public class SdhzService {
 	public static void main(String[] args) throws Exception {
 		CaptureService service = new CaptureService();
 		//1、获取用户id
-		String cookie = "sessionid=yne81zd2l1uxayxwl0nrrmqp510arpay; csrftoken=C22IKrKhhbxJNHQRI2XdGSZXXwYy0zMn7u2haocOk81DwrgrQpaHYoxi27sctjRq";
-		String csrftoken = "C22IKrKhhbxJNHQRI2XdGSZXXwYy0zMn7u2haocOk81DwrgrQpaHYoxi27sctjRq";
-		String trivalId = service.queryUserNameId(cookie);//用户id
-		System.out.println(trivalId);
-		//2、获取用户下所有广告id
-		List<JSONObject> list = service.getAllAdNumbers(cookie);
-		if (!EmptyUtil.isEmpty(list)) {
-			Map<String,Map<String,String>> allMap = new HashMap<String, Map<String,String>>();
-			for (JSONObject obj : list) {
-				Map<String,String> map = new HashMap<String, String>();
-				map.put("advertiser", trivalId);
-				map.put("name", obj.getString("name"));
-				map.put("start_time", obj.getString("start_time"));
-				map.put("end_time", obj.getString("end_time"));
-				map.put("budget", String.valueOf(obj.get("budget")));
-				map.put("start_hour_min_second", obj.getString("start_hour_min_second"));
-				map.put("end_hour_min_second", obj.getString("end_hour_min_second"));
-				map.put("unit_price", "1.55");
-				map.put("campaing_style", obj.getString("campaing_style"));
-				map.put("purpose", obj.getString("purpose"));
-//				map.put("status", obj.getString("status"));
-				allMap.put(String.valueOf(obj.get("id")), map);
-			}
-			for(Entry<String,Map<String,String>> entry :allMap.entrySet()) {
-				if("99855".equals(entry.getKey())) {
-					String str = service.changeAdPrice(cookie, csrftoken, entry.getKey(), entry.getValue());
-					System.out.println(str);
-					System.out.println(entry.getKey()+"\t"+entry.getValue());
-				}
+		String cookie = "csrftoken=Cyj0vM0LFsQZZYdHwaAmjqVw3xSv0bMD4cS18nI9z4hhB7v1TlF9cDdV9podNPMA; sessionid=g7uywe4i6nz0l36uyxufn2zlkgl56hfc";
+		String csrftoken = "Cyj0vM0LFsQZZYdHwaAmjqVw3xSv0bMD4cS18nI9z4hhB7v1TlF9cDdV9podNPMA";
+		String url = "http://ad.shandianhezi.com/account_amount/?day_number=0";
+		String str = HttpUtils.sendGet(url, cookie);
+		JSONArray arr1 = JSONArray.parseArray(str);
+		System.out.println("广告id\t曝光量\t点击数\t消耗金额");
+		for(int i=0;i<arr1.size();i++) {
+			JSONArray arr2 = JSONArray.parseArray(JSONObject.toJSONString(arr1.get(i)));
+			for(int j=0;j<arr2.size();j++) {
+				JSONObject json = JSONObject.parseObject(JSONObject.toJSONString(arr2.get(j)));
+				System.out.println(json.get("campaign_id")+"\t"+json.getInteger("impression")+"\t"+json.getInteger("click")+"\t"+json.getDouble("cost"));
 			}
 		}
-		
+//		System.out.println(str);
 //		String updatePriceUrl = "http://ad.shandianhezi.com/ad_campaing/593025/";
 //		Map<String,String> map = new HashMap<String, String>();
 //		map.put("advertiser", trivalId);

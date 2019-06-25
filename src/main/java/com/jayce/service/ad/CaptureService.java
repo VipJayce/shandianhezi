@@ -24,6 +24,7 @@ import com.jayce.comm.constants.AdStatusEnum;
 import com.jayce.comm.constants.CommConstants;
 import com.jayce.comm.util.EmptyUtil;
 import com.jayce.comm.util.HttpUtils;
+import com.jayce.entity.UserDayCostTemp;
 
 @Service
 public class CaptureService {
@@ -317,5 +318,41 @@ public class CaptureService {
 			logger.error("用户("+cookie+")改变广告"+ adNumber +"价格("+ data +")失败",e);
 		}
 		return "";
+	}
+	
+	/**
+	 * 获取用户每日消耗
+	 * @param userName
+	 * @param cookie
+	 * @return
+	 */
+	public List<UserDayCostTemp> getUserCostTmps(String userName,String cookie) {
+		String str = HttpUtils.sendGet(CommConstants.USER_COST_URL, cookie);
+		JSONArray arr1 = JSONArray.parseArray(str);
+		List<UserDayCostTemp> nowTmpList = new ArrayList<UserDayCostTemp>();
+		Date createDate = new Date();
+		Integer impression = 0;//曝光量
+		Integer click = 0;//点击
+		Double cost = 0.0;//消耗
+		String campaignId = "";//广告id
+		for(int i=0;i<arr1.size();i++) {
+			JSONArray arr2 = JSONArray.parseArray(JSONObject.toJSONString(arr1.get(i)));
+			for(int j=0;j<arr2.size();j++) {
+				JSONObject json = JSONObject.parseObject(JSONObject.toJSONString(arr2.get(j)));
+				impression = json.getInteger("impression");
+				click = json.getInteger("click");
+				cost = json.getDouble("cost");
+				campaignId = String.valueOf(json.get("campaign_id"));
+				UserDayCostTemp tmp = new UserDayCostTemp();
+				tmp.setUserName(userName);
+				tmp.setCampaignId(campaignId);
+				tmp.setImpression(impression);
+				tmp.setClick(click);
+				tmp.setCost(cost);
+				tmp.setCreateDate(createDate);
+				nowTmpList.add(tmp);
+			}
+		}
+		return nowTmpList;
 	}
 }

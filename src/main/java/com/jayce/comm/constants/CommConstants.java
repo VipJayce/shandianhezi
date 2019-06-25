@@ -33,6 +33,10 @@ public class CommConstants {
 	 * 广告价格改变url
 	 * */
 	public static String CHANGE_AD_PRICE_URL = COMMON_URL+"ad_campaing/";
+	/**
+	 * 用户广告每日消耗url
+	 * */
+	public static String USER_COST_URL = COMMON_URL+"account_amount/?day_number=0";
 	
 	/**
 	 * 所有用户登录后cookie缓存
